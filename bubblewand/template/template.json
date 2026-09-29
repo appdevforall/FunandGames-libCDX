@@ -1,6 +1,6 @@
 {
-    "name": "Bubble Wand (libGDX)",
-    "description": "Creates a Bubble Wand Shooter Game (libGDX)",
+    "name": "Bubble Wand (libCDX)",
+    "description": "Creates a Bubble Wand Shooter Game (libCDX)",
     "version": "0.1",
     "parameters": {
         "required": {
