@@ -1,7 +1,7 @@
 [versions]
 agp = "${{AGP_VERSION}}"
 kotlin = "${{KOTLIN_VERSION}}"
-gdx = "1.13.0"
+gdx = "1.12.1"
 
 [libraries]
 gdx-core = { group = "com.badlogicgames.gdx", name = "gdx", version.ref = "gdx" }
