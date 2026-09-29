@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
 }
 
 configurations {
@@ -40,14 +39,17 @@ android {
         targetCompatibility = ${{JAVA_TARGET_COMPAT}} 
     }
 
-    kotlinOptions {
-        jvmTarget = "${{JAVA_TARGET}}" 
-    }
-
     packaging {
         jniLibs {
             useLegacyPackaging = true
         }
+    }
+}
+
+// AGP 9+ compiles Kotlin itself (built-in Kotlin), so there is no kotlin-android plugin here
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.fromTarget("${{JAVA_TARGET}}")
     }
 }
 
