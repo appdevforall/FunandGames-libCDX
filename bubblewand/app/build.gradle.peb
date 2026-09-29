@@ -1,0 +1,80 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+}
+
+configurations {
+    natives
+}
+
+android {
+    namespace = "${{PACKAGE_NAME}}" 
+    compileSdk = ${{COMPILE_SDK}} 
+
+    defaultConfig {
+        applicationId = "${{PACKAGE_NAME}}" 
+        minSdk = ${{MIN_SDK}} 
+        targetSdk = ${{TARGET_SDK}} 
+        versionCode = 1
+        versionName = "1.0"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["libs"]
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = ${{JAVA_SOURCE_COMPAT}} 
+        targetCompatibility = ${{JAVA_TARGET_COMPAT}} 
+    }
+
+    kotlinOptions {
+        jvmTarget = "${{JAVA_TARGET}}" 
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+}
+
+dependencies {
+    implementation(libs.gdx.core)
+    implementation(libs.gdx.backend.android)
+    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-armeabi-v7a")
+    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-arm64-v8a")
+    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-x86")
+    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-x86_64")
+}
+
+// libGDX ships its Android .so files inside per-ABI classifier jars; unpack them
+// into app/libs/<abi>/ so AGP packages them as jniLibs.
+tasks.register("copyAndroidNatives") {
+    doFirst {
+        configurations.natives.copy().files.each { jar ->
+            def abi = (jar.name - ".jar").split("natives-")[1]
+            copy {
+                from zipTree(jar)
+                into file("libs/" + abi)
+                include "*.so"
+            }
+        }
+    }
+}
+
+tasks.matching { it.name.contains("merge") && it.name.contains("JniLibFolders") }.configureEach {
+    it.dependsOn "copyAndroidNatives"
+}
