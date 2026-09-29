@@ -6,6 +6,12 @@ configurations {
     natives
 }
 
+// androidx.core pulls in profileinstaller (ART baseline profiles, not used by libGDX);
+// Code On The Go's offline Maven repository has no .aar for it, so leave it out.
+configurations.configureEach {
+    exclude group: "androidx.profileinstaller", module: "profileinstaller"
+}
+
 android {
     namespace = "${{PACKAGE_NAME}}"
     compileSdk = ${{COMPILE_SDK}} 
