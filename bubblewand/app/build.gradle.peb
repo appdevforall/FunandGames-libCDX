@@ -18,7 +18,7 @@ android {
         versionName = "1.0"
 
         ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
 
@@ -58,8 +58,6 @@ dependencies {
     implementation(libs.gdx.backend.android)
     natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-armeabi-v7a")
     natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-arm64-v8a")
-    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-x86")
-    natives("com.badlogicgames.gdx:gdx-platform:" + libs.versions.gdx.get() + ":natives-x86_64")
 }
 
 // libGDX ships its Android .so files inside per-ABI classifier jars; unpack them
