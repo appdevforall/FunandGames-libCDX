@@ -6,6 +6,20 @@ configurations {
     natives
 }
 
+// libGDX 1.13.x needs androidx.core at runtime. Pin its tree to versions that
+// Code On The Go's offline Maven repository carries (the same ones its built-in
+// AndroidX templates use); the newer androidx.core libGDX asks for pulls in
+// modules (profileinstaller, collection 1.0.0, ...) that the repository lacks.
+configurations.configureEach {
+    resolutionStrategy {
+        force "androidx.core:core:1.9.0"
+        force "androidx.collection:collection:1.4.2"
+        force "androidx.annotation:annotation:1.8.1"
+        force "androidx.lifecycle:lifecycle-runtime:2.5.1"
+        force "androidx.lifecycle:lifecycle-common:2.5.1"
+    }
+}
+
 android {
     namespace = "${{PACKAGE_NAME}}"
     compileSdk = ${{COMPILE_SDK}} 
