@@ -1,6 +1,6 @@
 {
-    "name": "Demo (libCDX)",
-    "description": "Creates a demo game (libCDX)",
+    "name": "Demo (libGDX)",
+    "description": "Creates a demo game (libGDX)",
     "tooltipTag": "template.basic.activity",
     "version": "0.1",
     "parameters": {

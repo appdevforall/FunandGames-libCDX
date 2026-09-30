@@ -7,17 +7,17 @@ and runs on the device. They are ports of the jMonkeyEngine templates in
 
 | Template | Language | Game |
 |---|---|---|
-| **Demo (libCDX)** | Java | 3D Earth you drag to spin, an orbiting rocket with an exhaust trail and bloom glow, a starfield, tap for points |
-| **Tetris (libCDX)** | Kotlin | Falling-block puzzle: drag to move, drag down to drop faster, tap to rotate, long-press to hard-drop |
-| **Bubble Wand (libCDX)** | Kotlin | First-person shooter: catch floating balloon animals in bubbles using an on-screen D-pad and FIRE button |
+| **Demo (libGDX)** | Java | 3D Earth you drag to spin, an orbiting rocket with an exhaust trail and bloom glow, a starfield, tap for points |
+| **Tetris (libGDX)** | Kotlin | Falling-block puzzle: drag to move, drag down to drop faster, tap to rotate, long-press to hard-drop |
+| **Bubble Wand (libGDX)** | Kotlin | First-person shooter: catch floating balloon animals in bubbles using an on-screen D-pad and FIRE button |
 
 All three use libGDX 1.13.1.
 
 ## Install in Code On The Go
 
-1. Download [`FunandGames-libCDX.cgt`](FunandGames-libCDX.cgt) to the device's /sdcard/Download folder
+1. Download [`FunandGames-libGDX.cgt`](FunandGames-libGDX.cgt) to the device's /sdcard/Download folder
 2. Using the Add-ons manager in Preferences, install the templates
-3. **Create a new project** → pick **Demo (libCDX)**, **Tetris (libCDX)** or **Bubble Wand (libCDX)** →
+3. **Create a new project** → pick **Demo (libGDX)**, **Tetris (libGDX)** or **Bubble Wand (libGDX)** →
    name it → **Create**.
 4. Wait for "Project initialized", then tap **Run**.
 
@@ -43,7 +43,7 @@ demo/  tetris/  bubblewand/     one Code On The Go template each
   app/src/main/java/PACKAGE_NAME/*.peb   game source
   gradle/libs.versions.toml.peb          dependency versions
 cgt/                            the three templates plus templates.json, as packaged
-FunandGames-libCDX.cgt          zip of cgt/ — the file you install
+FunandGames-libGDX.cgt          zip of cgt/ — the file you install
 ```
 
 Files ending in `.peb` are [Pebble](https://pebbletemplates.io/) templates. Code On The Go fills in
@@ -85,7 +85,7 @@ other tokens listed in each `template.json` when it creates a project.
 After changing a template, copy it into `cgt/` and re-zip:
 
 ```bash
-(cd cgt && zip -qr -X ../FunandGames-libCDX.cgt .)
+(cd cgt && zip -qr -X ../FunandGames-libGDX.cgt .)
 ```
 
 `cgt/templates.json` lists the template folders the package contains.
