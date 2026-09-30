@@ -16,7 +16,7 @@ All three use libGDX 1.13.1.
 ## Install in Code On The Go
 
 1. Download [`FunandGames-libCDX.cgt`](FunandGames-libCDX.cgt) to the device's /sdcard/Download folder
-2. Using the Add-ons manager in Prefernces, install the templates
+2. Using the Add-ons manager in Preferences, install the templates
 3. **Create a new project** → pick **Demo (libCDX)**, **Tetris (libCDX)** or **Bubble Wand (libCDX)** →
    name it → **Create**.
 4. Wait for "Project initialized", then tap **Run**.
