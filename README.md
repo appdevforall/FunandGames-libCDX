@@ -1,4 +1,4 @@
-# FunandGames (libCDX)
+# FunandGames (libGDX)
 
 Three small Android game templates for [Code On The Go](https://github.com/appdevforall/CodeOnTheGo),
 built with [libGDX](https://libgdx.com/). Each one creates a complete, playable game project that builds
