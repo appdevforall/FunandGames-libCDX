@@ -75,16 +75,16 @@ dependencies {
 }
 
 // libGDX ships its Android .so files inside per-ABI classifier jars; unpack them
-// into app/libs/<abi>/ so AGP packages them as jniLibs.
-tasks.register("copyAndroidNatives") {
-    doFirst {
-        configurations.natives.copy().files.each { jar ->
-            def abi = (jar.name - ".jar").split("natives-")[1]
-            copy {
-                from zipTree(jar)
-                into file("libs/" + abi)
-                include "*.so"
-            }
+// into app/libs/<abi>/ so AGP packages them as jniLibs. Written as a plain Copy
+// task (no project access at execution time) so it works with the configuration cache.
+tasks.register("copyAndroidNatives", Copy) {
+    def natives = configurations.natives
+    into layout.projectDirectory.dir("libs")
+    ["armeabi-v7a", "arm64-v8a"].each { abi ->
+        def jar = natives.filter { it.name.endsWith("natives-" + abi + ".jar") }
+        from(zipTree { jar.singleFile }) {
+            include "*.so"
+            into abi
         }
     }
 }
